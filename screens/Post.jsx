@@ -10,6 +10,8 @@ import {
 import { THEME } from '../utils/constants';
 import { dataPosts } from './utils/data';
 import { Button } from '../components';
+import { HeaderIcon } from '../components';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 export const Post = ({ navigation }) => {
   const postId = navigation.getParam('postId'); //❗️
@@ -51,6 +53,9 @@ export const Post = ({ navigation }) => {
 
 Post.navigationOptions = ({ navigation }) => { //❗️
   const date = navigation.getParam('date');
+  const bookmarked = navigation.getParam('bookmarked');
+
+  const iconName = bookmarked ? `ios-star` : `ios-star-outline`;
 
   return {
     headerTitle: `Post ${new Date(date).toLocaleDateString()}`,
@@ -58,6 +63,14 @@ Post.navigationOptions = ({ navigation }) => { //❗️
       backgroundColor: THEME.GREY_COLOR,
     },
     headerTintColor: THEME.WHITE, 
+    headerRight: <HeaderButtons HeaderButtonComponent={HeaderIcon}>
+      <Item
+        title="Take photo"
+        iconName={iconName}
+        onPress={() => console.log('Press photo')}
+        color={THEME.WHITE}
+      />
+    </HeaderButtons>,
   };
 };
 

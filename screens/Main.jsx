@@ -16,6 +16,7 @@ export const Main = ({ navigation }) => {
     navigation.navigate('Post', {
       postId: post.id,
       date: post.date,
+      bookmarked: post.bookmarked,
     }); //❗
   };
 
@@ -32,7 +33,7 @@ export const Main = ({ navigation }) => {
 };
 
 Main.navigationOptions = {
-  headerTitle: `Main`,
+  headerTitle: `Blog`,
   //headerRight: <Text>sedfr</Text> //❗, but us lib: react-navigation-header-buttons
   headerRight: <HeaderButtons HeaderButtonComponent={HeaderIcon}>
     <Item
@@ -40,7 +41,14 @@ Main.navigationOptions = {
       iconName="ios-camera"
       onPress={() => console.log('Press photo')}
     />
-  </HeaderButtons>
+  </HeaderButtons>,
+  headerLeft: <HeaderButtons HeaderButtonComponent={HeaderIcon}>
+    <Item
+      title="Toggle Drawer"
+      iconName="ios-menu"
+      onPress={() => console.log('Press photo')}
+    />
+  </HeaderButtons>,
 };
 
 const styles = StyleSheet.create({
