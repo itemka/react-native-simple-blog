@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { AppLoading } from 'expo';
 import { loadApplication } from './utils/helper';
+import { AppNavigation } from './navigation/AppNavigation';
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -14,18 +14,5 @@ export default function App() {
     />
   );
 
-  return (
-    <View style={styles.container}>
-      <Text>App!</Text>
-    </View>
-  );
+  return <AppNavigation/>; //❗️
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
