@@ -7,18 +7,16 @@ import {
 import { Post } from './Post';
 import { THEME } from '../../utils/constants';
 
-export const Posts = ({ posts, onOpen }) => {
-  return (
-    <View styles={styles.wrapper}>
-      <FlatList
-        keyExtractor={post => post.id.toString()}
-        data={posts}
-        scrollEnabled={true}
-        renderItem={({item}) => <Post post={item} onOpen={onOpen} />}
-      />
-    </View>
-  );
-};
+export const Posts = ({ posts, onOpen }) => (
+  <View styles={styles.wrapper}>
+    <FlatList
+      keyExtractor={post => post.id.toString()}
+      data={posts}
+      scrollEnabled={true}
+      renderItem={({item}) => <Post post={item} onOpen={onOpen} />}
+    />
+  </View>
+);
 
 const styles = StyleSheet.create({
   wrapper: {

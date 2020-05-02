@@ -11,6 +11,20 @@ const handlers = {
     posts: payload,
     favoritePosts: payload.filter(post => post.bookmarked),
   }),
+  [actionTypes.TOGGLE_BOOKMARKED]: (state, { payload }) => {
+    const allPosts = state.posts.map(post => {
+      if (post.id === payload) {
+        post.bookmarked = !post.bookmarked;
+      }
+      return post;
+    });
+
+    return {
+      ...state,
+      post: allPosts,
+      favoritePosts: allPosts.filter(post => post.bookmarked),
+    };
+  },
   DEFAULT: state => state,
 };
 

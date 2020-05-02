@@ -8,20 +8,17 @@ import {
 } from 'react-native';
 import { THEME } from '../../../utils/constants';
 
-export const Post = ({ post, onOpen }) => {
-  console.log(post)
-  return (
-    <TouchableOpacity activeOpacity={0.7} onPress={() => onOpen(post)}>
-      <View style={styles.post}>
-        <ImageBackground source={{ uri: post.img }} style={styles.image}>
-          <View style={styles.textWrap}>
-            <Text style={styles.title}>{new Date(post.date).toLocaleDateString()}</Text>
-          </View>
-        </ImageBackground>
-      </View>
-    </TouchableOpacity>
-  );
-};
+export const Post = ({ post, onOpen }) => (
+  <TouchableOpacity activeOpacity={0.7} onPress={() => onOpen(post)}>
+    <View style={styles.post}>
+      <ImageBackground source={{ uri: post.img }} style={styles.image}>
+        <View style={styles.textWrap}>
+          <Text style={styles.title}>{new Date(post.date).toLocaleDateString()}</Text>
+        </View>
+      </ImageBackground>
+    </View>
+  </TouchableOpacity>
+);
 
 const styles = StyleSheet.create({
   post: {

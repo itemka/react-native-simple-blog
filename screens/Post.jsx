@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -8,15 +8,30 @@ import {
   Alert,
 } from 'react-native';
 import { THEME } from '../utils/constants';
-import { dataPosts } from './utils/data';
 import { Button } from '../components';
 import { HeaderIcon } from '../components';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleBookmarked } from '../redux/actions/post';
 
 export const Post = ({ navigation }) => {
+  const dispatch = useDispatch();
   const postId = navigation.getParam('postId'); //❗️
+  const post = useSelector(state => state.post.posts.find(post => post.id === postId));
 
-  const post = dataPosts.find(p => p.id === postId);
+  const handleToggle = useCallback(() => {
+    dispatch(toggleBookmarked(postId));
+  }, [dispatch, postId]);
+
+  useEffect(() => {
+    navigation.setParams({ handleToggle });
+  }, [handleToggle]);
+
+  const bookmarked = useSelector(state => state.post.favoritePosts.some(post => post.id === postId));
+
+  useEffect(() => {
+    navigation.setParams({ bookmarked });
+  }, [bookmarked]);
 
   const handleRemove = () => {
     Alert.alert(
@@ -54,7 +69,7 @@ export const Post = ({ navigation }) => {
 Post.navigationOptions = ({ navigation }) => { //❗️
   const date = navigation.getParam('date');
   const bookmarked = navigation.getParam('bookmarked');
-
+  const handleToggle = navigation.getParam('handleToggle');
   const iconName = bookmarked ? `ios-star` : `ios-star-outline`;
 
   return {
@@ -65,9 +80,9 @@ Post.navigationOptions = ({ navigation }) => { //❗️
     headerTintColor: THEME.WHITE, 
     headerRight: <HeaderButtons HeaderButtonComponent={HeaderIcon}>
       <Item
-        title="Take photo"
+        title="Star"
         iconName={iconName}
-        onPress={() => console.log('Press photo')}
+        onPress={handleToggle}
         color={THEME.WHITE}
       />
     </HeaderButtons>,
