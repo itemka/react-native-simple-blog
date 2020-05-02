@@ -4,7 +4,8 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-  
+import { THEME } from '../utils/constants';
+
 export const Post = () => {
   return (
     <View styles={styles.center}>
@@ -14,14 +15,17 @@ export const Post = () => {
 };
 
 Post.navigationOptions = {
-  headerTitle: `Post`
+  headerTitle: `Post`,
+  headerStyle: {
+    backgroundColor: THEME.GREY_COLOR,
+  },
+  headerTintColor: THEME.WHITE,
 };
 
 const styles = StyleSheet.create({
   center: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
   },
 });

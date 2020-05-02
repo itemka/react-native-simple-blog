@@ -21,4 +21,6 @@ https://reactnavigation.org/docs/4.x/navigation-prop
 
 - the toolbar is added automatically
 
+# STYLES FOR NAVIGATION
+
 

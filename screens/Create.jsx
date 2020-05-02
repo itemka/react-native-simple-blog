@@ -16,8 +16,7 @@ export const Create = () => {
 const styles = StyleSheet.create({
   center: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: `center`,
+    alignItems: `center`,
   },
 });

@@ -4,7 +4,11 @@ import {
   Text,
   StyleSheet,
   Button,
+  FlatList,
 } from 'react-native';
+import { THEME } from '../utils/constants';
+import { dataPosts } from './utils/data';
+import { Post } from '../components/Post'; 
 
 export const Main = ({ navigation }) => {
   const handleOnPress = () => {
@@ -12,22 +16,23 @@ export const Main = ({ navigation }) => {
   };
 
   return (
-    <View styles={styles.center}>
-      <Text>Main</Text>
-      <Button title="go to post" onPress={handleOnPress}/>
+    <View styles={styles.wrapper}>
+     <FlatList
+        keyExtractor={post => post.id.toString()}
+        data={dataPosts}
+        scrollEnabled={true}
+        renderItem={({item}) => <Post post={item}/>}
+     />
     </View>
   );
 };
 
 Main.navigationOptions = {
-  headerTitle: `wdafa`
+  headerTitle: `Main`
 };
 
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  wrapper: {
+    padding: THEME.PADDING_VERTICAL / 2,
   },
 });
