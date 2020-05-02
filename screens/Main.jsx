@@ -8,11 +8,15 @@ import {
 } from 'react-native';
 import { THEME } from '../utils/constants';
 import { dataPosts } from './utils/data';
-import { Post } from '../components/Post'; 
+import { Post, HeaderIcon } from '../components';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'; //❗
 
 export const Main = ({ navigation }) => {
-  const handleOnPress = () => {
-    navigation.navigate('Post'); //❗️
+  const handleOnOpenPost = post => {
+    navigation.navigate('Post', {
+      postId: post.id,
+      date: post.date,
+    }); //❗
   };
 
   return (
@@ -21,14 +25,22 @@ export const Main = ({ navigation }) => {
         keyExtractor={post => post.id.toString()}
         data={dataPosts}
         scrollEnabled={true}
-        renderItem={({item}) => <Post post={item}/>}
+        renderItem={({item}) => <Post post={item} onOpen={handleOnOpenPost} />}
      />
     </View>
   );
 };
 
 Main.navigationOptions = {
-  headerTitle: `Main`
+  headerTitle: `Main`,
+  //headerRight: <Text>sedfr</Text> //❗, but us lib: react-navigation-header-buttons
+  headerRight: <HeaderButtons HeaderButtonComponent={HeaderIcon}>
+    <Item
+      title="Take photo"
+      iconName="ios-camera"
+      onPress={() => console.log('Press photo')}
+    />
+  </HeaderButtons>
 };
 
 const styles = StyleSheet.create({

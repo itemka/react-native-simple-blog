@@ -13,7 +13,7 @@ const PostNavigator = createStackNavigator({
     headerStyle: {
       backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : THEME.WHITE,
     },
-    headerTintColor: Platform.OS === 'android' ? THEME.TEXT_COLOR : THEME.MAIN_COLOR,
+    headerTintColor: Platform.OS === 'android' ? THEME.WHITE : THEME.MAIN_COLOR,
   }
 });
 

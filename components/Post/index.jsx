@@ -4,29 +4,29 @@ import {
   Text,
   StyleSheet,
   ImageBackground, //❗️
+  TouchableOpacity,
 } from 'react-native';
 import { THEME } from '../../utils/constants';
-// import { THEME } from '../utils/constants';
 
-export const Post = ({ post }) => {
+export const Post = ({ post, onOpen }) => {
   console.log(post)
   return (
-    <View style={styles.post}>
-      <ImageBackground source={{ uri: post.img }} style={styles.image}>
-        <View style={styles.textWrap}>
-          <Text style={styles.title}>{new Date(post.date).toLocaleDateString()}</Text>
-          {/* <Text>{post.text}</Text>
-          <Text>{post.date}</Text>
-          <Text>{post.bookmarked}</Text>      */}
-        </View>
-      </ImageBackground>
-    </View>
+    <TouchableOpacity activeOpacity={0.7} onPress={() => onOpen(post)}>
+      <View style={styles.post}>
+        <ImageBackground source={{ uri: post.img }} style={styles.image}>
+          <View style={styles.textWrap}>
+            <Text style={styles.title}>{new Date(post.date).toLocaleDateString()}</Text>
+          </View>
+        </ImageBackground>
+      </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   post: {
     marginBottom: THEME.PADDING_VERTICAL - 5,
+    marginHorizontal: THEME.PADDING_HORIZONTAL / 2,
     overflow: `hidden`,
   },
   image: {

@@ -4,10 +4,12 @@
 
 https://reactnative.dev/
 
-work with 4 version - react-navigation@^4
+https://expo.io/
+
+Work with 4 version - react-navigation@^4
 doc: https://reactnavigation.org/docs/4.x/getting-started/
 
-work with 5 version - @react-navigation/native
+Work with 5 version - @react-navigation/native
 doc: https://reactnavigation.org/docs/getting-started/
 
 https://reactnavigation.org/docs/navigation-prop
@@ -21,6 +23,8 @@ https://reactnavigation.org/docs/4.x/navigation-prop
 
 - the toolbar is added automatically
 
-# STYLES FOR NAVIGATION
+# IMPLEMENT UI
+
+- `yarn add react-navigation-header-buttons @expo/vector-icons`
 
 
