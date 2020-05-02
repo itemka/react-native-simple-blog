@@ -1,7 +1,7 @@
 import React from 'react';
-import { dataPosts } from './utils/data';
 import { Posts, HeaderIcon } from '../components';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useSelector } from 'react-redux';
 
 export const Bookmarked = ({ navigation }) => {
   const handleOnOpenPost = post => {
@@ -12,7 +12,7 @@ export const Bookmarked = ({ navigation }) => {
     });
   };
 
-  const favoritesPosts = dataPosts.filter(post => post.bookmarked); 
+  const favoritesPosts = useSelector(state => state.post.favoritePosts);
 
   return <Posts posts={favoritesPosts} onOpen={handleOnOpenPost} />;
 };

@@ -30,4 +30,5 @@ https://reactnavigation.org/docs/4.x/navigation-prop
             react-navigation-material-bottom-tabs react-native-paper
             react-navigation-drawer`
 
+# WORK WITH REDUX
 

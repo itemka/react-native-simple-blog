@@ -1,7 +1,8 @@
-import React from 'react';
-import { dataPosts } from './utils/data';
+import React, { useEffect } from 'react';
 import { Posts, HeaderIcon } from '../components';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'; //❗
+import { loadPosts } from '../redux/actions/post';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const Main = ({ navigation }) => {
   const handleOnOpenPost = post => {
@@ -12,7 +13,14 @@ export const Main = ({ navigation }) => {
     });
   };
 
-  return <Posts posts={dataPosts} onOpen={handleOnOpenPost} />;
+  const dispatch = useDispatch();
+  const allPosts = useSelector(state => state.post.posts);
+
+  useEffect(()=>{
+    dispatch(loadPosts());
+  }, [dispatch]);
+
+  return <Posts posts={allPosts} onOpen={handleOnOpenPost} />;
 };
 
 // Main.navigationOptions = { //❗, but for navigation.toggleDrawer() we us ({ navigation }) => ({
