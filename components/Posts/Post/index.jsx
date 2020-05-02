@@ -6,7 +6,7 @@ import {
   ImageBackground, //❗️
   TouchableOpacity,
 } from 'react-native';
-import { THEME } from '../../utils/constants';
+import { THEME } from '../../../utils/constants';
 
 export const Post = ({ post, onOpen }) => {
   console.log(post)

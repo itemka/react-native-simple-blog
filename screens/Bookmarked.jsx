@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Button,
-  FlatList,
-} from 'react-native';
-import { THEME } from '../utils/constants';
 import { dataPosts } from './utils/data';
-import { Post, HeaderIcon } from '../components';
+import { Posts, HeaderIcon } from '../components';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 export const Bookmarked = ({ navigation }) => {
@@ -20,16 +12,9 @@ export const Bookmarked = ({ navigation }) => {
     });
   };
 
-  return (
-    <View styles={styles.wrapper}>
-     <FlatList
-        keyExtractor={post => post.id.toString()}
-        data={dataPosts.filter(post => post.bookmarked)}
-        scrollEnabled={true}
-        renderItem={({item}) => <Post post={item} onOpen={handleOnOpenPost} />}
-     />
-    </View>
-  );
+  const favoritesPosts = dataPosts.filter(post => post.bookmarked); 
+
+  return <Posts posts={favoritesPosts} onOpen={handleOnOpenPost} />;
 };
 
 Bookmarked.navigationOptions = {
@@ -42,9 +27,3 @@ Bookmarked.navigationOptions = {
     />
   </HeaderButtons>,
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    padding: THEME.PADDING_VERTICAL / 2,
-  },
-});

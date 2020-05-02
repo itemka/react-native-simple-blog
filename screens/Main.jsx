@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Button,
-  FlatList,
-} from 'react-native';
-import { THEME } from '../utils/constants';
 import { dataPosts } from './utils/data';
-import { Post, HeaderIcon } from '../components';
+import { Posts, HeaderIcon } from '../components';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'; //❗
 
 export const Main = ({ navigation }) => {
@@ -20,16 +12,7 @@ export const Main = ({ navigation }) => {
     }); //❗
   };
 
-  return (
-    <View styles={styles.wrapper}>
-     <FlatList
-        keyExtractor={post => post.id.toString()}
-        data={dataPosts}
-        scrollEnabled={true}
-        renderItem={({item}) => <Post post={item} onOpen={handleOnOpenPost} />}
-     />
-    </View>
-  );
+  return <Posts posts={dataPosts} onOpen={handleOnOpenPost} />;
 };
 
 Main.navigationOptions = {
@@ -50,9 +33,3 @@ Main.navigationOptions = {
     />
   </HeaderButtons>,
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    padding: THEME.PADDING_VERTICAL / 2,
-  },
-});

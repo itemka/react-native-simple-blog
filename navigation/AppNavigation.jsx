@@ -12,30 +12,32 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'; //❗️
 
-const PostNavigator = createStackNavigator({
-  Main: Main,
-  Post: { screen: Post }, //❗️
-}, {
-  initialRouteName: `Main`, //❗️
-  defaultNavigationOptions: { //❗️
-    headerStyle: {
-      backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : THEME.WHITE,
-    },
-    headerTintColor: Platform.OS === 'android' ? THEME.WHITE : THEME.MAIN_COLOR,
-  }
-});
+const navigatorOptions = {
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : THEME.WHITE,
+  },
+  headerTintColor: Platform.OS === 'android' ? THEME.WHITE : THEME.MAIN_COLOR,
+}
 
-const BookmarkedNavigator = createStackNavigator({
-  Bookmarked: Bookmarked,
-  Post: Post,
-}, {
-  defaultNavigationOptions: {
-    headerStyle: {
-      backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : THEME.WHITE,
-    },
-    headerTintColor: Platform.OS === 'android' ? THEME.WHITE : THEME.MAIN_COLOR,
+const PostNavigator = createStackNavigator(
+  {
+    Main: Main,
+    Post: { screen: Post }, //❗️
+  }, 
+  {
+    defaultNavigationOptions: navigatorOptions, //❗️
   }
-});
+);
+
+const BookmarkedNavigator = createStackNavigator(
+  {
+    Bookmarked: Bookmarked,
+    Post: Post,
+  },
+  {
+    defaultNavigationOptions: navigatorOptions,
+  }
+);
 
 const BottomTabsConfig = {
   Post: {
