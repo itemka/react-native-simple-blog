@@ -6,8 +6,6 @@ export const THEME = {
   WHITE: `white`,
   EDIT_COLOR: `whitesmoke`,
   EDIT_BUTTON_COLOR: `tan`,
-  // TODO
-  // OK: `mediumseagreen`,
   PADDING_HORIZONTAL: 30,
   PADDING_VERTICAL: 20,
 };

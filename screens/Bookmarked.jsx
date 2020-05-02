@@ -17,13 +17,13 @@ export const Bookmarked = ({ navigation }) => {
   return <Posts posts={favoritesPosts} onOpen={handleOnOpenPost} />;
 };
 
-Bookmarked.navigationOptions = {
+Bookmarked.navigationOptions = ({ navigation }) => ({
   headerTitle: `Favorites`,
   headerLeft: <HeaderButtons HeaderButtonComponent={HeaderIcon}>
     <Item
       title="Toggle Drawer"
       iconName="ios-menu"
-      onPress={() => console.log('Press photo')}
+      onPress={() => navigation.toggleDrawer()}
     />
   </HeaderButtons>,
-};
+});

@@ -5,12 +5,16 @@ import {
   Main,
   Post,
   Bookmarked,
+  About,
+  Create,
 } from '../screens';
 import { THEME } from '../utils/constants';
 import { Platform } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'; //❗️
+import { createDrawerNavigator } from 'react-navigation-drawer'; //❗️
+
 
 const navigatorOptions = {
   headerStyle: {
@@ -19,6 +23,7 @@ const navigatorOptions = {
   headerTintColor: Platform.OS === 'android' ? THEME.WHITE : THEME.MAIN_COLOR,
 }
 
+// first level 
 const PostNavigator = createStackNavigator(
   {
     Main: Main,
@@ -29,6 +34,7 @@ const PostNavigator = createStackNavigator(
   }
 );
 
+// first level 
 const BookmarkedNavigator = createStackNavigator(
   {
     Bookmarked: Bookmarked,
@@ -38,6 +44,27 @@ const BookmarkedNavigator = createStackNavigator(
     defaultNavigationOptions: navigatorOptions,
   }
 );
+
+// first level 
+const AboutNavigator = createStackNavigator(
+  {
+    About: About,
+  },
+  {
+    defaultNavigationOptions: navigatorOptions,
+  },
+);
+
+// first level 
+const CreateNavigator = createStackNavigator(
+  {
+    Create: Create,
+  },
+  {
+    defaultNavigationOptions: navigatorOptions,
+  },
+);
+
 
 const BottomTabsConfig = {
   Post: {
@@ -64,6 +91,7 @@ const BottomTabsConfig = {
   },
 };
 
+// second level
 export const BottomNavigator = Platform.OS === 'android'
   ? createMaterialBottomTabNavigator(BottomTabsConfig, {
       activeTintColor: THEME.WHITE,
@@ -79,4 +107,38 @@ export const BottomNavigator = Platform.OS === 'android'
     }
 );
 
-export const AppNavigation = createAppContainer(BottomNavigator);
+
+// third level
+const MainNavigation = createDrawerNavigator(
+  { //❗️
+    PostTabs: {
+      screen: BottomNavigator,
+      navigationOptions: {
+        drawerLabel: 'Main',
+        // drawerIcon: ...
+      },
+    },
+    Create: {
+      screen: CreateNavigator,
+      navigationOptions: {
+        drawerLabel: 'Create post',
+      },
+    },
+    About: {
+      screen: AboutNavigator,
+      navigationOptions: {
+        drawerLabel: 'About',
+      },
+    },
+  },
+  {
+    contentOptions: {
+      activeTintColor: THEME.MAIN_COLOR,
+      labelStyle: {
+        fontFamily: 'openSansBold',
+      }
+    },
+  },
+);
+
+export const AppNavigation = createAppContainer(MainNavigation);

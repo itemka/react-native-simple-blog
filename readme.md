@@ -27,6 +27,7 @@ https://reactnavigation.org/docs/4.x/navigation-prop
 
 - `yarn add react-navigation-header-buttons @expo/vector-icons
             react-navigation-tabs
-            react-navigation-material-bottom-tabs react-native-paper`
+            react-navigation-material-bottom-tabs react-native-paper
+            react-navigation-drawer`
 
 
