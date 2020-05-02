@@ -19,7 +19,7 @@ export const Post = ({ navigation }) => {
   const post = dataPosts.find(p => p.id === postId);
 
   const handleRemove = () => {
-    Alert.alert( //❗️
+    Alert.alert(
       `Delete`,
       `Are you sure to delete ${post.text.slice(0, 10)}... ?`,
       [

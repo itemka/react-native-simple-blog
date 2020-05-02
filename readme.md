@@ -25,6 +25,8 @@ https://reactnavigation.org/docs/4.x/navigation-prop
 
 # IMPLEMENT UI
 
-- `yarn add react-navigation-header-buttons @expo/vector-icons react-navigation-tabs`
+- `yarn add react-navigation-header-buttons @expo/vector-icons
+            react-navigation-tabs
+            react-navigation-material-bottom-tabs react-native-paper`
 
 
