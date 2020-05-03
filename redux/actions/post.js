@@ -1,8 +1,8 @@
 import { actionTypes } from './actionTypes';
 
-export const loadPosts = () => ({
+export const loadPosts = posts => ({
   type: actionTypes.LOAD_POSTS,
-  payload: [],
+  payload: posts,
 });
 
 export const toggleBookmarked = id => ({
@@ -15,11 +15,7 @@ export const removePost = id => ({
   payload: id,
 });
 
-export const addPost = post => {
-  post.id = Date.now().toString();
-
-  return {
-    type: actionTypes.ADD_POST,
-    payload: post,
-  }
-};
+export const addPost = post => ({
+  type: actionTypes.ADD_POST,
+  payload: post,
+});

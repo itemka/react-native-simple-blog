@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
 import { Posts, HeaderIcon } from '../components';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'; //❗
-import { loadPosts } from '../redux/actions/post';
-import { useDispatch, useSelector } from 'react-redux';
+import { loadPostsThunk } from '../redux/thunks/post';
+import { connect } from "react-redux";
 
-export const Main = ({ navigation }) => {
+const Main = ({
+  navigation,
+  allPosts,
+  loadPostsThunk,
+}) => {
   const handleOnOpenPost = post => {
     navigation.navigate('Post', { //❗
       postId: post.id,
@@ -13,12 +17,9 @@ export const Main = ({ navigation }) => {
     });
   };
 
-  const dispatch = useDispatch();
-  const allPosts = useSelector(state => state.post.posts);
-
   useEffect(()=>{
-    dispatch(loadPosts());
-  }, [dispatch]);
+    loadPostsThunk()
+  }, []);
 
   return <Posts posts={allPosts} onOpen={handleOnOpenPost} />;
 };
@@ -42,3 +43,9 @@ Main.navigationOptions = ({ navigation }) => ({
     />
   </HeaderButtons>,
 });
+
+const mapStateToProps = state => ({
+  allPosts: state.post.posts,
+});
+
+export default connect(mapStateToProps, { loadPostsThunk })(Main);

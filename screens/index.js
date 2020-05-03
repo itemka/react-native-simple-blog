@@ -1,5 +1,5 @@
-export { Main } from './Main';
+export { default as Main } from './Main';
 export { Post } from './Post';
 export { About } from './About';
-export { Create } from './Create';
+export { default as Create } from './Create';
 export { Bookmarked } from './Bookmarked';

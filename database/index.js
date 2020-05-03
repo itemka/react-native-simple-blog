@@ -21,4 +21,35 @@ export class DB {
       });
     });
   }
+
+  static getPosts() {
+    return new Promise((resolve, reject) => {
+      db.transaction(tx => {
+        tx.executeSql(
+          `SELECT * FROM posts`,
+          [],
+          (_, result) => resolve(result.rows._array), //❗️
+          (_, error) => reject(error),
+        );
+      });
+    });
+  }
+
+  static createPost({
+    text,
+    date,
+    bookmarked,
+    img,
+  }) {
+    return new Promise((resolve, reject) => {
+      db.transaction(tx => {
+        tx.executeSql(
+          `INSERT INTO posts (text, img, date, bookmarked) VALUES (?, ?, ?, ?)`, //❗️for guard
+          [text, img, date, 0], //❗️
+          (_, result) => resolve(result.insertId),
+          (_, error) => reject(error),
+        );
+      });
+    });
+  }
 };

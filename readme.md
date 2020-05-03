@@ -44,3 +44,9 @@ https://reactnavigation.org/docs/4.x/navigation-prop
 - prepare to connect database + https://docs.expo.io/versions/latest/sdk/sqlite/
 
 - `expo install expo-sqlite` + https://www.w3schools.com/sql/sql_create_table.asp
+
+- get data from DB
+
+- save photo local and work with this photos | us lib: `expo install expo-file-system`
+
+- implement create post and add into DB
