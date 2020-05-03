@@ -35,3 +35,6 @@ https://reactnavigation.org/docs/4.x/navigation-prop
 - create actionTypes/action/reducer/store
 
 - import { `useDispatch`, `useSelector` } from `'react-redux'`;
+
+# WORK WITH NATIVE ELEMENTS
+

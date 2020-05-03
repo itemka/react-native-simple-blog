@@ -32,6 +32,7 @@ export const Create = ({ navigation }) => {
 
     dispatch(addPost(post));
     navigation.navigate('Main');
+    setText('');
   };
 
   return (
