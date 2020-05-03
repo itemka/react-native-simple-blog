@@ -15,3 +15,12 @@ export const removePost = id => ({
   type: actionTypes.REMOVE_POST,
   payload: id,
 });
+
+export const addPost = post => {
+  post.id = Date.now().toString();
+
+  return {
+    type: actionTypes.ADD_POST,
+    payload: post,
+  }
+};

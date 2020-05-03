@@ -30,6 +30,10 @@ const handlers = {
     posts: state.posts.filter(post => post.id !== payload),
     favoritePosts: state.favoritePosts.filter(post => post.id !== payload),
   }),
+  [actionTypes.ADD_POST]: (state, { payload }) => ({
+    ...state,
+    posts: [ { ...payload }, ...state.posts ],
+  }),
   DEFAULT: state => state,
 };
 

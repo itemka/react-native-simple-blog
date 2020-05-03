@@ -4,4 +4,5 @@ export const actionTypes = {
   TOGGLE_BOOKMARKED: `TOGGLE_BOOKMARKED`,
   /*---------------------*/
   REMOVE_POST: `REMOVE_POST`,
+  ADD_POST: `ADD_POST`,
 };
