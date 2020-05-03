@@ -50,3 +50,5 @@ https://reactnavigation.org/docs/4.x/navigation-prop
 - save photo local and work with this photos | us lib: `expo install expo-file-system`
 
 - implement create post and add into DB
+
+- update and remove post + add loader when loading posts
