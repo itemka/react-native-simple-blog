@@ -11,7 +11,7 @@ import { Button } from '../components';
 import { HeaderIcon } from '../components';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleBookmarked, removePost } from '../redux/actions/post';
+import { toggleBookmarkedThunk, removePostThunk } from '../redux/thunks/post';
 import { warningDelete } from '../utils/helper';
 
 export const Post = ({ navigation }) => {
@@ -20,8 +20,8 @@ export const Post = ({ navigation }) => {
   const post = useSelector(state => state.post.posts.find(post => post.id === postId));
 
   const handleToggle = useCallback(() => {
-    dispatch(toggleBookmarked(postId));
-  }, [dispatch, postId]);
+    dispatch(toggleBookmarkedThunk(post));
+  }, [dispatch, post]);
 
   useEffect(() => {
     navigation.setParams({ handleToggle });
@@ -36,7 +36,7 @@ export const Post = ({ navigation }) => {
   const handleRemove = () => {
     const shortText = post.text.slice(0, 10);
     const remove = () => {
-      dispatch(removePost(postId));
+      dispatch(removePostThunk(postId));
       navigation.navigate('Main');
     };
     warningDelete(shortText, remove);

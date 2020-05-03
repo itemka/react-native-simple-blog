@@ -1,5 +1,10 @@
 import * as FileSystem from 'expo-file-system'; //❗
-import { loadPosts, addPost } from '../actions/post';
+import {
+  loadPosts,
+  addPost,
+  toggleBookmarked,
+  removePost,
+} from '../actions/post';
 import { DB } from '../../database';
 
 export const loadPostsThunk = () => async dispatch => {
@@ -35,5 +40,25 @@ export const addPostThink = post => async dispatch => {
     dispatch(addPost(currentPost));
   } catch (err) {
     console.log('Error into addPostThink: ', err);
+  }
+};
+
+export const toggleBookmarkedThunk = post => async dispatch => {
+  try {
+    await DB.updatePost(post);
+
+    dispatch(toggleBookmarked(post.id));
+  } catch (err) {
+    console.log('Error into toggleBookmarkedThunk: ', err);
+  }
+};
+
+export const removePostThunk = id => async dispatch => {
+  try {
+    await DB.removePost(id);
+
+    dispatch(removePost(id));
+  } catch (err) {
+    console.log('Error into removePostThunk: ', err);
   }
 };

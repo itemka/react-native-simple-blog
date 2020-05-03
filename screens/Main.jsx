@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import { Posts, HeaderIcon } from '../components';
+import {
+  Posts,
+  HeaderIcon,
+  Loader,
+} from '../components';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'; //❗
 import { loadPostsThunk } from '../redux/thunks/post';
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
-const Main = ({
-  navigation,
-  allPosts,
-  loadPostsThunk,
-}) => {
+export const Main = ({ navigation }) => {
   const handleOnOpenPost = post => {
     navigation.navigate('Post', { //❗
       postId: post.id,
@@ -17,11 +17,19 @@ const Main = ({
     });
   };
 
+  const dispatch = useDispatch();
+  const allPosts = useSelector(state => state.post.posts);
+  const loading = useSelector(state => state.post.loading);
+
   useEffect(()=>{
-    loadPostsThunk()
+    dispatch(loadPostsThunk());
   }, []);
 
-  return <Posts posts={allPosts} onOpen={handleOnOpenPost} />;
+  return (
+    <Loader isLoader={loading}>
+      <Posts posts={allPosts} onOpen={handleOnOpenPost} />
+    </Loader>
+  );
 };
 
 // Main.navigationOptions = { //❗, but for navigation.toggleDrawer() we us ({ navigation }) => ({
@@ -43,9 +51,3 @@ Main.navigationOptions = ({ navigation }) => ({
     />
   </HeaderButtons>,
 });
-
-const mapStateToProps = state => ({
-  allPosts: state.post.posts,
-});
-
-export default connect(mapStateToProps, { loadPostsThunk })(Main);

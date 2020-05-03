@@ -11,12 +11,13 @@ import {
 import { HeaderIcon, Button } from '../components';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { THEME } from '../utils/constants';
+import { useDispatch } from 'react-redux';
 import { addPostThink } from '../redux/thunks/post';
 import { PhotoPicker } from '../components/PhotoPicker';
-import { connect } from "react-redux";
 
-const Create = ({ navigation, addPostThink }) => {
+export const Create = ({ navigation }) => {
   const [text, setText] = useState('');
+  const dispatch = useDispatch();
   const imgRef = useRef();
   const defaultImg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png';
 
@@ -28,7 +29,7 @@ const Create = ({ navigation, addPostThink }) => {
       bookmarked: false,
     };
 
-    addPostThink(post);
+    dispatch(addPostThink(post));
     setText('');
     navigation.navigate('Main');
   };
@@ -73,8 +74,6 @@ Create.navigationOptions = ({ navigation }) => ({
     />
   </HeaderButtons>,
 });
-
-export default connect(null, { addPostThink })(Create);
 
 const styles = StyleSheet.create({
   wrapper: {

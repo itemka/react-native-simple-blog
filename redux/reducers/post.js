@@ -3,6 +3,7 @@ import { actionTypes } from '../actions/actionTypes';
 export const initialState = {
   posts: [],
   favoritePosts: [],
+  loading: true,
 };
 
 const handlers = {
@@ -10,6 +11,7 @@ const handlers = {
     ...state,
     posts: payload,
     favoritePosts: payload.filter(post => post.bookmarked),
+    loading: false,
   }),
   [actionTypes.TOGGLE_BOOKMARKED]: (state, { payload }) => {
     const allPosts = state.posts.map(post => {

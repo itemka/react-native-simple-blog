@@ -5,6 +5,11 @@ export const loadPosts = posts => ({
   payload: posts,
 });
 
+export const addPost = post => ({
+  type: actionTypes.ADD_POST,
+  payload: post,
+});
+
 export const toggleBookmarked = id => ({
   type: actionTypes.TOGGLE_BOOKMARKED,
   payload: id,
@@ -13,9 +18,4 @@ export const toggleBookmarked = id => ({
 export const removePost = id => ({
   type: actionTypes.REMOVE_POST,
   payload: id,
-});
-
-export const addPost = post => ({
-  type: actionTypes.ADD_POST,
-  payload: post,
 });
