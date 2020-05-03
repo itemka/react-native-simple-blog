@@ -38,3 +38,5 @@ https://reactnavigation.org/docs/4.x/navigation-prop
 
 # WORK WITH NATIVE ELEMENTS
 
+- `expo install expo-image-picker
+    expo install expo-permissions`

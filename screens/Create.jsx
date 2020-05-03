@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TextInput,
-  Image,
   ScrollView,
   TouchableWithoutFeedback, //❗️
   Keyboard, //❗️
@@ -14,25 +13,30 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { THEME } from '../utils/constants';
 import { useDispatch } from 'react-redux';
 import { addPost } from '../redux/actions/post';
+import { PhotoPicker } from '../components/PhotoPicker';
 
 export const Create = ({ navigation }) => {
   const [text, setText] = useState('');
   const dispatch = useDispatch();
-
-  const img = `https://cdn.londonandpartners.com/visit/general-london/areas/river/76709-640x360-houses-of-parliament-and-london-eye-on-thames-from-above-640.jpg`;
+  const imgRef = useRef();
+  const defaultImg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png';
 
   const savePost = () => {
     const post = {
       id: 2,
-      img,
+      img: imgRef.current || defaultImg,
       text,
       date: new Date().toJSON(),
       bookmarked: false,
     };
 
     dispatch(addPost(post));
-    navigation.navigate('Main');
     setText('');
+    navigation.navigate('Main');
+  };
+
+  const handlePhotoPick = uri => {
+    imgRef.current = uri;
   };
 
   return (
@@ -47,12 +51,14 @@ export const Create = ({ navigation }) => {
             onChangeText={setText}
             multiline
           />
-          <Image style={styles.image} source={{ uri: img }} />
-          <View style={styles.button}>
-            <Button onPress={() => savePost()} color={THEME.MAIN_COLOR}>
-              Create post
-            </Button>
-          </View>
+          <PhotoPicker onPick={handlePhotoPick} />
+          {text !== '' && (
+            <View style={styles.button}>
+              <Button onPress={() => savePost()} color={THEME.MAIN_COLOR}>
+                Create post
+              </Button>
+            </View>
+          )}
         </View>
       </TouchableWithoutFeedback>
     </ScrollView>
