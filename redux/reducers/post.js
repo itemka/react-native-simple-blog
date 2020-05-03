@@ -25,6 +25,11 @@ const handlers = {
       favoritePosts: allPosts.filter(post => post.bookmarked),
     };
   },
+  [actionTypes.REMOVE_POST]: (state, { payload }) => ({
+    ...state,
+    posts: state.posts.filter(post => post.id !== payload),
+    favoritePosts: state.favoritePosts.filter(post => post.id !== payload),
+  }),
   DEFAULT: state => state,
 };
 

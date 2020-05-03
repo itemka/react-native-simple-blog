@@ -5,14 +5,14 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-  Alert,
 } from 'react-native';
 import { THEME } from '../utils/constants';
 import { Button } from '../components';
 import { HeaderIcon } from '../components';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleBookmarked } from '../redux/actions/post';
+import { toggleBookmarked, removePost } from '../redux/actions/post';
+import { warningDelete } from '../utils/helper';
 
 export const Post = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -34,22 +34,15 @@ export const Post = ({ navigation }) => {
   }, [bookmarked]);
 
   const handleRemove = () => {
-    Alert.alert(
-      `Delete`,
-      `Are you sure to delete ${post.text.slice(0, 10)}... ?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: `Delete`,
-          style: 'destructive',
-          onPress: () => {
-
-          }
-        },
-      ],
-      { cancelable: false },
-    );
+    const shortText = post.text.slice(0, 10);
+    const remove = () => {
+      dispatch(removePost(postId));
+      navigation.navigate('Main');
+    };
+    warningDelete(shortText, remove);
   };
+
+  if (!post) return null;
 
   return (
     <ScrollView styles={styles.center}>
