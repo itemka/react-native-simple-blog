@@ -1,11 +1,18 @@
 import * as Font from 'expo-font';
 import { Alert } from 'react-native';
+import { DB } from '../database';
 
 export const loadApplication = async () => {
-  await Font.loadAsync({
-    openSansRegular: require('../assets/fonts/OpenSans-Regular.ttf'),
-    openSansBold: require('../assets/fonts/OpenSans-Bold.ttf'),
-  });
+  try {
+    await Font.loadAsync({
+      openSansRegular: require('../assets/fonts/OpenSans-Regular.ttf'),
+      openSansBold: require('../assets/fonts/OpenSans-Bold.ttf'),
+    });
+    await DB.init();
+    console.log('DB started...');
+  } catch (err) {
+    console.log('Error DB: ', err);
+  }
 };
 
 export const warningDelete = (text, onPressDelete) => {

@@ -40,3 +40,7 @@ https://reactnavigation.org/docs/4.x/navigation-prop
 
 - `expo install expo-image-picker
     expo install expo-permissions`
+
+- prepare to connect database + https://docs.expo.io/versions/latest/sdk/sqlite/
+
+- `expo install expo-sqlite` + https://www.w3schools.com/sql/sql_create_table.asp
