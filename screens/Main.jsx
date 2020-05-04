@@ -34,7 +34,7 @@ export const Main = ({ navigation }) => {
 
 // Main.navigationOptions = { //❗, but for navigation.toggleDrawer() we us ({ navigation }) => ({
 Main.navigationOptions = ({ navigation }) => ({
-  headerTitle: `Blog`,
+  headerTitle: `My blog!`,
   //headerRight: <Text>sedfr</Text> //❗, but us lib: react-navigation-header-buttons
   headerRight: <HeaderButtons HeaderButtonComponent={HeaderIcon}>
     <Item

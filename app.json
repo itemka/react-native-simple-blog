@@ -1,19 +1,15 @@
 {
   "expo": {
-    "name": "ReactNativeSelfPosts",
+    "name": "Self Posts",
     "slug": "ReactNativeSelfPosts",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/rn-icon.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/rn-splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#242832"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,7 +18,14 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.itemkadev.self-posts-rn-app",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.itemkadev.self_posts_rn_app",
+      "versionCode": 1,
+      "permissions": ["CAMERA", "WRITE_EXTERNAL_STORAGE"]
     }
   }
 }
